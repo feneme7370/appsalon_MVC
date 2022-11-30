@@ -1,0 +1,24 @@
+INSTALACION DE NPM
+    instalar las dependencias npm con "npm install" y en package.json poner
+    "scripts": {
+        "gulp": "gulp"
+    },
+
+    ejecutar en la terminal gulp con "npm run gulp" para ver que funcione y cree los archivos css,js,imagen correctamente. van en src/img, src/js, src/css
+
+INSTALACION DE COMPOSER
+    instalar composer con "composer init" y en el composer.json agregar
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Models\\" : "./models"
+        }
+    },
+
+    actualizar composer con "composer update"
+
+INICIAR CREANDO RUTAS
+    crear controller
+    index agregar rutas referenciando al controller
+    en el controller agregar metodo para llamar a la view correspondiente con render
