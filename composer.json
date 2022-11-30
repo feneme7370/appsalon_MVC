@@ -1,0 +1,19 @@
+{
+    "name": "feneme/appsalon_mvc",
+    "description": "Proyecto PHP, MVC, SASS, Gulp",
+    "type": "proyect",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "CONTROLLER\\" : "./",
+
+        }
+    },
+    "authors": [
+        {
+            "name": "federico",
+            "email": "marascofederico95@gmail.com"
+        }
+    ],
+    "require": {}
+}
