@@ -22,3 +22,93 @@ INICIAR CREANDO RUTAS
     crear controller
     index agregar rutas referenciando al controller
     en el controller agregar metodo para llamar a la view correspondiente con render
+
+CREAR VISTAS   
+    crear las views que se van a utilizar
+
+CREAR BASE DE DATOS
+    crear las tablas con los campos que se van a solicitar
+
+CREAR MODEL
+    se creal el modelo para la cada tabla
+
+
+    FM
+    Error 404 en hosting
+    0 votos
+    Federico Nicolás · Clase 441
+    · hace 10 horas
+    
+    Hola me podrían ayudar, intenté subir bienesraices con mvc a un hosting, y solo me carga el inicio es decir /, pero cuando entro a un link o pongo /nosotros o cualquier otro me tira error 404, no se como hacer para que tome la URL y enrute las views, en localhost me funciona bien el sistema, es solo cuando intenté subirlo, hay que hacer alguna configuración adicional?
+    1 respuesta
+    JC
+    Julio César — Profesor asistente
+    0 votos
+    hace 6 horas
+    
+    Hola Federico
+    
+    Si, estos proyecto si recuerdas se ejecutan desde la carpeta /public
+    
+    Por lo que se requieren de configuraciones adicionales, en concreto son reglas de redireccionamiento que se establecen en archivos llamados .htaccess
+    
+    Tienes que crear un archivo .htaccess en la raíz de tu proyecto (donde se encuentra el Router.php) y debe llevar este contenido:
+    
+        DirectoryIndex index.php
+         
+        RewriteEngine On
+        RewriteRule ^$ public/index.php [L]
+        RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+    
+    
+    Y ahora en tu carpeta public donde esta el index.php que contiene las rutas hay que crear un segundo .htaccess con el siguiente contenido:
+    
+        <IfModule mod_negotiation.c>
+            Options -MultiViews
+        </IfModule>
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+        </IfModule>
+    
+    
+    También, como la mayoría de los hostings no soportan instalación manual de composer o bien, requieres configurar php para instalar dependencias, como en el caso de este proyecto la librería GD necesaria para el correcto funcionamiento de Intervention\Image, tendrías que instalar la librería como dependencia de composer en tu proyecto y una vez generada y actualizada la carpeta vendor, subirla al hosting.
+    
+    
+    Por lo que localmente tendrías que usar el comando:
+    
+        composer require "ext-gd:*" --ignore-platform-reqs
+    
+    Seguido de composer update
+    
+    Y ahora si subir tus archivos, incluida la carpeta vendor a tu hosting, incluyendo composer.json y composer-lock.json
+    
+    Ya que sin esta librería lo mas probable es que te de error al querer subir imágenes desde el formulario de las propiedades.
+
+    RewriteRule ^portafolios/(.+)$ portafolio.php?user=$1 [L,QSA]
+
+dice así
+
+RewriteRule -> reescribir segun la regla
+^ -> si comienza con
+portafolios -> la palabra portafolios
+/ -> seguido de una diagonal que simula un directorio y divide la url
+(.+) -> captura la palabra despues de la diagonal, como: juan, pedro, pepe
+$ -> si termina con
+
+portafolio.php -> te lleva a portafolio.php
+?user= -> pasando el valor get user
+$1 -> esto contendrá la variable (.+) de arriba.
+
+conociendo esto.
+
+tiene que salir poniendo una url asi:
+
+localhost/portafolios/juan
+
+debe ser lo mismo que
+
+localhost/portafolio.php?user=juan

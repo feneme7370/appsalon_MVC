@@ -15,6 +15,7 @@ class ActiveRecord {
         self::$db = $database;
     }
 
+    //llamar alertas donde tipo es error o exito y mensaje el texto
     public static function setAlerta($tipo, $mensaje) {
         static::$alertas[$tipo][] = $mensaje;
     }
@@ -115,6 +116,12 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+    // Busca un registro por su id y un where
+    public static function where($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE ${columna} = '${valor}'";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
@@ -166,7 +173,7 @@ class ActiveRecord {
     }
 
     // Eliminar un Registro por su ID
-    public function eliminar() {
+    public function eliminar($id) {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
