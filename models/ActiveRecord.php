@@ -142,6 +142,9 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
+        // SI NO ANDA INSERCCION POR API VER SI LA CONSULTA ESTA BIEN HECHA
+        //return json_encode(['query' => $query]);
+
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [

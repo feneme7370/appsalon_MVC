@@ -6,17 +6,35 @@
 }
 
 .campo {
-    display: flex;
+    //display: flex;
     margin-bottom: calc(v.$separacion /2);
     align-items: center;
 
     label{
-        flex: 0 0 10rem; //0 crecimiento 0 decrecimiento 10rem de width
+        //flex: 0 0 10rem; //0 crecimiento 0 decrecimiento 10rem de width
+        display: block;
+        text-align: center;
+        margin-bottom: calc(v.$separacion / 5);
+        font-weight: v.$bold;
     }
     input{
-        flex: 1; //toma todo el restante
+        display: block;
+        //flex: 1; //toma todo el restante
         width: 100%;
         padding: calc(v.$separacion / 4);//
         border-radius: 1rem;
+    }
+}
+
+@include m.tablet{
+    .campo {
+        display: flex;
+        label{
+            flex: 0 0 10rem; //0 crecimiento 0 decrecimiento 10rem de width
+            text-align: left;
+        }
+        input{
+            flex: 1; //toma todo el restante
+        }
     }
 }

@@ -142,7 +142,7 @@ class LoginController {
 
         $usuario = Usuario::where('token', $token);
         
-        if(empty($usuario)){
+        if(empty($usuario) || $token === ''){
             //mostrar mensaje de error si no es valido
             Usuario::setAlerta('error', 'token no valido');
         }else{
