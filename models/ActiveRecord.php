@@ -114,7 +114,7 @@ class ActiveRecord {
     public static function find($id) {
         $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id}";
         $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+        return array_shift( $resultado ) ;//saca el primer elemento de una arreglo $propiedad[0]->imagen, queda $propiedad->imagen
     }
     // Busca un registro por su id y un where
     public static function where($columna, $valor) {
@@ -122,6 +122,14 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+
+    // Consulta de varias tablas de SQL
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return $resultado ;
+    }
+
+
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
@@ -176,7 +184,7 @@ class ActiveRecord {
     }
 
     // Eliminar un Registro por su ID
-    public function eliminar($id) {
+    public function eliminar() {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;

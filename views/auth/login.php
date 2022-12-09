@@ -22,7 +22,7 @@
     <div class="campo">
         <label for="">Password</label>
         <input 
-            type="text"
+            type="password"
             placeholder="Su password"
             id="password"
             name="password"

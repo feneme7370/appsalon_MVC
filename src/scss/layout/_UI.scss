@@ -21,5 +21,34 @@
         padding: 3rem;
         width: 95%;
         margin: 0 auto;
+        @include m.tablet{
+            overflow: scroll;
+        }
+    }
+}
+
+.barra{
+    margin-bottom: calc(v.$separacion / 4);
+
+    @include m.tablet{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .boton{
+        @include m.boton(v.$negro, v.$blanco);
+    }
+}
+
+.barra-servicios{
+    margin-bottom: 7rem;
+    @include m.tablet{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .boton{
+        margin: 0 0 1rem 0;
+        padding: 2rem 1rem;
     }
 }

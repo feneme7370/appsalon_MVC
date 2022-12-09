@@ -39,7 +39,7 @@ class LoginController {
                             $_SESSION['admin'] = $usuario->admin ?? null;
                             header('Location: /admin');
                         }else{
-                            header('Location: /citas');
+                            header('Location: /cita');
                         }
                         debuguear($_SESSION);
                     }
@@ -57,7 +57,9 @@ class LoginController {
         ]);
     }
     public static function logout(){
-        echo "hola logout";
+        $_SESSION = [];
+        header('Location: /');
+
     }
     public static function olvide(Router $router){
         $alertas = [];

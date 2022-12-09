@@ -11,6 +11,8 @@ const cita ={
     servicios : []
 }
 
+let direccion = '127.0.0.1:3000';
+
 //cuando todo el documento este cargado va a ejecutar las funciones de dentro
 document.addEventListener('DOMContentLoaded', function(){
     iniciarApp();
@@ -125,7 +127,7 @@ function paginaSiguiente(){
 //CONSULTAR API
 async function consultarAPI(){
     try {
-        const url = 'http://localhost:3000/api/servicios';//donde se encuentran los datos
+        const url = 'http://'+direccion+'/api/servicios';//donde se encuentran los datos
         const resultado = await fetch(url);//agarra los resultados
         const servicios = await resultado.json();//los transforma a json desde el array asoc
         mostrarServicios(servicios);
@@ -356,7 +358,7 @@ async function reservarCita(){
     //validar url con trycatch
     try {
         //peticion a la api
-        const url = 'http://localhost:3000/api/citas';
+        const url = 'http://'+direccion+'/api/citas';
         const respuesta = await fetch(url, {
             method: 'POST',
             body: datos
