@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gulp": "gulp"
+    "start": "gulp"
   },
   "author": "",
   "license": "ISC",

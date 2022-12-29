@@ -38,7 +38,7 @@ function iniciarApp(){
     mostrarResumen();//muestra el resumen de la cita
 }
 
-/* ============ MOSTRAR SECCIONES ============ */
+/* ================================================ SELECCIONAR TABS ================================================ */
 function mostrarSeccion(){
     //remover a la que ya tiene mostrar
     const seccionAnterior = document.querySelector('.mostrar');
@@ -61,11 +61,10 @@ function mostrarSeccion(){
     tab.classList.add('actual');
 }
 
-/* ============ ELEGIR CON TABS SUPERIORES ============ */
+/* ================================================ ELEGIR CON TABS SUPERIORES ================================================ */
 function tabs(){
-    const botones = document.querySelectorAll('.tabs button');
-    
     //cuando es un All no se puede hacer botones.add.. porque debe ser a cada elemento seleccionado, por lo tanto se debe iterar
+    const botones = document.querySelectorAll('.tabs button');
 
     botones.forEach( (boton) => {
         boton.addEventListener('click', function (e){
@@ -79,7 +78,7 @@ function tabs(){
     
 }
 
-/* ============ ELEGIR CON BOTONES INFERIORES ============ */
+/* ================================================ ELEGIR CON BOTONES INFERIORES ================================================ */
 //mostrar y ocultar botones segun la posicion
 function botonesPaginador(){
     const botonAnterior = document.querySelector('#anterior');
@@ -100,6 +99,7 @@ function botonesPaginador(){
     mostrarSeccion();
 }
 
+/* ================================================ DAR ATRAS CON BOTON ================================================ */
 function paginaAnterior(){
     const paginaAnterior = document.querySelector('#anterior');
     paginaAnterior.addEventListener('click', function(){
@@ -111,6 +111,7 @@ function paginaAnterior(){
         botonesPaginador();
     });
 }
+/* ================================================ DAR ADELANTE CON BOTON ================================================ */
 function paginaSiguiente(){
     const paginaSiguiente = document.querySelector('#siguiente');
     paginaSiguiente.addEventListener('click', function(){
@@ -123,7 +124,7 @@ function paginaSiguiente(){
     });
 }
 
-/* ============ CONSULTAR API AL BACKEND ============ */
+/* ================================================ CONSULTAR API AL BACKEND ================================================ */
 //CONSULTAR API
 async function consultarAPI(){
     try {
@@ -136,12 +137,12 @@ async function consultarAPI(){
     }
 }
 
-/* ============ MOSTRAR TARJETAS CON LOS SERVICIOS ============ */
+/* ================================================ MOSTRAR TARJETAS CON SERVICIOS ================================================ */
 //mostrar datos traidos de la api
 function mostrarServicios(servicios){
     //se itera para poder usar cada elemento
     servicios.forEach( (servicio) => {
-        const {id, nombre, precio} = servicio; //no entiendo que asigna aca
+        const {id, nombre, precio} = servicio; //traer variables en una linea
 
         const nombreServicio = document.createElement('P');
         nombreServicio.classList.add('nombre-servicio');
